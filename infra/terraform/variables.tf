@@ -45,7 +45,13 @@ variable "twilio_auth_token" {
   sensitive   = true
 }
 
-variable "twilio_from_number" {
-  description = "Twilio phone number to send from"
+variable "twilio_messaging_service_sid" {
+  description = "Twilio Messaging Service SID for bulk sending"
+  type        = string
+  sensitive   = true
+}
+
+variable "google_sheet_id" {
+  description = "Google Sheet ID from the sheet URL"
   type        = string
 }

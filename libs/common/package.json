@@ -33,6 +33,7 @@
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.18"
+    "@swc/helpers": "~0.5.18",
+    "@types/aws-lambda": "^8.10.161"
   }
 }

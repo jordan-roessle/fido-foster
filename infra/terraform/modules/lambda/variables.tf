@@ -11,7 +11,7 @@ variable "function_name" {
 variable "handler" {
   description = "Lambda handler (filename.exportedFunction)"
   type        = string
-  default     = "main.handler"
+  default     = "index.handler"
 }
 
 variable "runtime" {

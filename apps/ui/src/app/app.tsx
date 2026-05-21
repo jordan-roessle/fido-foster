@@ -1,13 +1,17 @@
-// Uncomment this line to use CSS modules
-// import styles from './app.module.css';
-import NxWelcome from './nx-welcome';
+import {useState} from 'react';
+import {Login} from './components/Login';
+import {MessageForm} from './components/MessageForm';
 
-export function App() {
-  return (
-    <div>
-      <NxWelcome title="ui" />
-    </div>
+export const App = () => {
+  const [authenticated, setAuthenticated] = useState(
+    !!sessionStorage.getItem('token'),
   );
-}
+
+  return authenticated ? (
+    <MessageForm />
+  ) : (
+    <Login onLogin={() => setAuthenticated(true)} />
+  );
+};
 
 export default App;

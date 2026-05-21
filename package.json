@@ -8,7 +8,8 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,json,md}\"",
     "build:lambda": "tsx scripts/build-lambda.ts",
     "deploy:lambda:auth": "tsx scripts/build-lambda.ts --lambda auth && aws lambda update-function-code --function-name fido-foster-twilio-auth --zip-file fileb://apps/serverless/auth/dist/main.zip --region us-east-1",
-    "deploy:lambda:send": "tsx scripts/build-lambda.ts --lambda send && aws lambda update-function-code --function-name fido-foster-twilio-send --zip-file fileb://apps/serverless/send/dist/main.zip --region us-east-1"
+    "deploy:lambda:send": "tsx scripts/build-lambda.ts --lambda send && aws lambda update-function-code --function-name fido-foster-twilio-send --zip-file fileb://apps/serverless/send/dist/main.zip --region us-east-1",
+    "deploy:ui": "nx build ui && aws s3 sync apps/ui/dist s3://fido-foster-twilio-frontend-prod --delete --region us-east-1 && aws cloudfront create-invalidation --distribution-id ED9301C643QPL --paths /* --region us-east-1"
   },
   "private": true,
   "devDependencies": {
@@ -70,6 +71,10 @@
     "apps/serverless/*"
   ],
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^9.0.1",
+    "axios": "^1.16.1",
     "googleapis": "^172.0.0",
     "jsonwebtoken": "^9.0.3",
     "react": "^19.0.0",

@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken';
 import {
   FosterLengths,
   generateApiGatewayResponse,
-  HttpMethods,
   StatusCodes,
   validateEnv,
 } from '@fido-foster-twilio/common';
@@ -35,10 +34,6 @@ export const handler = async (event: APIGatewayProxyEventV2) => {
     return generateApiGatewayResponse(StatusCodes.InternalError, {
       message: 'Missing env variables, please contact chelsea/jordan',
     });
-  }
-
-  if (event.requestContext.http.method === HttpMethods.OPTIONS) {
-    return generateApiGatewayResponse(StatusCodes.NoContent, {});
   }
 
   // Verify JWT

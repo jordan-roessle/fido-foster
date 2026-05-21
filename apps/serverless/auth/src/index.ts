@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 
 import {
   generateApiGatewayResponse,
-  HttpMethods,
   StatusCodes,
   validateEnv,
 } from '@fido-foster-twilio/common';
@@ -26,9 +25,6 @@ export const handler = async (event: APIGatewayProxyEventV2) => {
   }
 
   // Validate request, grab password
-  if (event.requestContext.http.method === HttpMethods.OPTIONS) {
-    return generateApiGatewayResponse(StatusCodes.NoContent, {});
-  }
   if (!event.body) {
     return generateApiGatewayResponse(StatusCodes.BadRequest, {
       message: 'Missing request body',

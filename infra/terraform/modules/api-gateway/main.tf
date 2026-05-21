@@ -6,7 +6,7 @@ resource "aws_apigatewayv2_api" "main" {
   cors_configuration {
     allow_headers = ["Content-Type", "Authorization"]
     allow_methods = ["GET", "POST", "OPTIONS"]
-    allow_origins = ["https://${var.domain_name}"]
+    allow_origins = ["https://${var.domain_name}", "http://localhost:4200"]
     max_age       = 300
   }
 }
@@ -29,6 +29,11 @@ resource "aws_apigatewayv2_stage" "main" {
       responseLength = "$context.responseLength"
       errorMessage   = "$context.error.message"
     })
+  }
+
+  default_route_settings {
+    throttling_burst_limit = 10
+    throttling_rate_limit  = 5
   }
 }
 

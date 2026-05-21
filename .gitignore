@@ -58,3 +58,5 @@ infra/terraform/terraform.tfvars
 infra/terraform/.terraform.lock.hcl
 
 google_credentials.json
+
+**/.env

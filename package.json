@@ -70,8 +70,10 @@
     "apps/serverless/*"
   ],
   "dependencies": {
+    "googleapis": "^172.0.0",
     "jsonwebtoken": "^9.0.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "twilio": "^6.0.2"
   }
 }

@@ -55,3 +55,14 @@ variable "google_sheet_id" {
   description = "Google Sheet ID from the sheet URL"
   type        = string
 }
+
+variable "google_credentials" {
+  description = "Google service account JSON"
+  sensitive   = true
+}
+
+variable "send_twilio" {
+  description = "Whether or not to send twilio"
+  type        = string
+  default     = "false"
+}

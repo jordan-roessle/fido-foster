@@ -40,6 +40,8 @@ module "send_lambda" {
     TWILIO_AUTH_TOKEN            = var.twilio_auth_token
     TWILIO_MESSAGING_SERVICE_SID = var.twilio_messaging_service_sid
     GOOGLE_SHEET_ID              = var.google_sheet_id
+    GOOGLE_CREDENTIALS           = var.google_credentials
+    SEND_TWILIO                  = var.send_twilio
     NODE_ENV                     = var.environment
   }
 }

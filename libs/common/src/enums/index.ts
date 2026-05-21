@@ -14,3 +14,9 @@ export enum HttpMethods {
   PATCH = 'PATCH',
   OPTIONS = 'OPTIONS',
 }
+
+export enum FosterLengths {
+  Day = 'Day Trip',
+  ShortTerm = 'Short Term',
+  LongTerm = 'Long Term',
+}

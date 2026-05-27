@@ -1,4 +1,4 @@
-import {SyntheticEvent, useState} from 'react';
+import {ChangeEvent, SyntheticEvent, useState} from 'react';
 import {
   Box,
   Button,
@@ -11,13 +11,18 @@ import {
   Typography,
   Alert,
 } from '@mui/material';
-import {sendMessage} from '../../api';
+import {calculateFileSizeMb, FosterLengths, MAX_FILE_SIZE_MB} from '@fido-foster-twilio/common';
 
-const CATEGORIES = ['Day Trip', 'Short Term', 'Long Term'];
+import {getUploadUrl, sendMessage, uploadImage} from '../../api';
+
+const CATEGORIES = Object.values(FosterLengths);
 
 export const MessageForm = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [message, setMessage] = useState('');
+  const [image, setImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [uploadProgress, setUploadProgress] = useState<number>(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -30,18 +35,49 @@ export const MessageForm = () => {
     );
   };
 
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (calculateFileSizeMb(file) > MAX_FILE_SIZE_MB) {
+      setError(`Image must be under ${MAX_FILE_SIZE_MB}MB`);
+      return;
+    }
+
+    setImage(file);
+    setImagePreview(URL.createObjectURL(file));
+    setError(null);
+  };
+
+  const clearImage = () => {
+    setImage(null);
+    setImagePreview(null);
+    setUploadProgress(0);
+  };
+
+
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
     if (!message || !categories.length) return;
+
     setLoading(true);
     setError(null);
     setSuccess(null);
     try {
-      await sendMessage(message, categories);
+      let imageKey: string | undefined;
+      if(image) {
+        if (calculateFileSizeMb(image) > MAX_FILE_SIZE_MB) return;
+        const {uploadUrl, imageKey: key} = await getUploadUrl(image.type);
+        await uploadImage(uploadUrl, image, setUploadProgress);
+        imageKey = key;
+      }
+
+      await sendMessage(message, categories, imageKey);
       setSuccess('Message sent successfully');
       setMessage('');
       setCategories([]);
+      clearImage();
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to send message');
     } finally {

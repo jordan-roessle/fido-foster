@@ -18,11 +18,12 @@ const requiredEnvVars = [
   'GOOGLE_SHEET_ID',
   'GOOGLE_CREDENTIALS',
   'SEND_TWILIO',
+  'MEDIA_BUCKET_NAME'
 ];
 
-const sheetRange = 'Contacts!A:E';
-const phoneColumn = 'phone';
-const stringTrue = 'TRUE';
+const SHEET_RANGE = 'Contacts!A:E';
+const PHONE_COLUMN = 'phone';
+const STRING_TRUE = 'TRUE';
 
 export const handler = async (event: APIGatewayProxyEventV2) => {
   // Validate env
@@ -63,8 +64,9 @@ export const handler = async (event: APIGatewayProxyEventV2) => {
 
   let message: string;
   let categories: string[];
+  let imageKey: string | undefined;
   try {
-    ({message, categories} = JSON.parse(event.body));
+    ({message, categories, imageKey} = JSON.parse(event.body));
   } catch {
     return generateApiGatewayResponse(StatusCodes.BadRequest, {
       message: 'Invalid JSON',
@@ -96,7 +98,7 @@ export const handler = async (event: APIGatewayProxyEventV2) => {
     const sheets = google.sheets({version: 'v4', auth});
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: env.GOOGLE_SHEET_ID,
-      range: sheetRange,
+      range: SHEET_RANGE,
     });
 
     const rows = response.data.values ?? [];
@@ -104,7 +106,7 @@ export const handler = async (event: APIGatewayProxyEventV2) => {
 
     // Find column indices
     const phoneIndex = headers.findIndex(
-      (h: string) => h.toLowerCase() === phoneColumn,
+      (h: string) => h.toLowerCase() === PHONE_COLUMN,
     );
     const categoryIndices = categories.map(cat =>
       headers.findIndex((h: string) => h.toLowerCase() === cat.toLowerCase()),
@@ -121,7 +123,7 @@ export const handler = async (event: APIGatewayProxyEventV2) => {
     // Filter rows where any selected category is TRUE
     const filteredNumbers = dataRows
       .filter(row =>
-        selectedCategories.some(idx => row[idx]?.toUpperCase() === stringTrue),
+        selectedCategories.some(idx => row[idx]?.toUpperCase() === STRING_TRUE),
       )
       .map(row => row[phoneIndex])
       .filter(Boolean);
@@ -155,6 +157,9 @@ export const handler = async (event: APIGatewayProxyEventV2) => {
           body: message,
           messagingServiceSid: env.TWILIO_MESSAGING_SERVICE_SID,
           to,
+          ...(imageKey && {
+            mediaUrl: [`${env.MEDIA_BUCKET_URL}/${imageKey}`],
+          })
         }),
       ),
     );

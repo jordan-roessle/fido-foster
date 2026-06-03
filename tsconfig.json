@@ -20,6 +20,9 @@
     },
     {
       "path": "./apps/serverless/webhook"
+    },
+    {
+      "path": "./libs/server-side-common"
     }
   ]
 }

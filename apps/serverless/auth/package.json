@@ -17,7 +17,7 @@
             "cjs"
           ],
           "bundle": false,
-          "main": "apps/serverless/auth/src/main.ts",
+          "main": "apps/serverless/auth/src/index.ts",
           "tsConfig": "apps/serverless/auth/tsconfig.app.json",
           "assets": [
             "apps/serverless/auth/src/assets"

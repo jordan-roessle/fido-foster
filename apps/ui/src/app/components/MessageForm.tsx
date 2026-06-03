@@ -1,4 +1,4 @@
-import {ChangeEvent, SyntheticEvent, useState} from 'react';
+import {ChangeEvent, SyntheticEvent, useRef, useState} from 'react';
 import {
   Box,
   Button,
@@ -32,6 +32,8 @@ export const MessageForm = () => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const toggleCategory = (category: string) => {
     setCategories(prev =>
       prev.includes(category)
@@ -58,6 +60,9 @@ export const MessageForm = () => {
     setImage(null);
     setImagePreview(null);
     setUploadProgress(0);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
   };
 
   const handleSubmit = async (e: SyntheticEvent) => {
@@ -145,6 +150,7 @@ export const MessageForm = () => {
         />
         <Box sx={{width: '100%'}}>
           <input
+            ref={fileInputRef}
             id="image-upload"
             type="file"
             accept="image/*"

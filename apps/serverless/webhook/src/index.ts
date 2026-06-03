@@ -6,7 +6,7 @@ import {
   generateApiGatewayResponse,
   StatusCodes,
   validateEnv,
-} from '@fido-foster-twilio/common';
+} from '@fido-foster-twilio/server-side-common';
 
 const requiredEnvVars = [
   'ALLOWED_ORIGIN',

@@ -20,7 +20,7 @@
             "cjs"
           ],
           "bundle": false,
-          "main": "apps/serverless/send/src/main.ts",
+          "main": "apps/serverless/send/src/index.ts",
           "tsConfig": "apps/serverless/send/tsconfig.app.json",
           "assets": [
             "apps/serverless/send/src/assets"

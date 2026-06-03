@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "composite": true,
     "declarationMap": true,
+    "declaration": true,
     "emitDeclarationOnly": true,
     "importHelpers": true,
     "isolatedModules": true,
@@ -19,7 +19,10 @@
     "target": "es2022",
     "customConditions": ["@org/source"],
     "paths": {
-      "@fido-foster-twilio/common": ["libs/common/src/index.ts"]
+      "@fido-foster-twilio/common": ["libs/common/src/index.ts"],
+      "@fido-foster-twilio/server-side-common": [
+        "libs/server-side-common/src/index.ts"
+      ]
     }
   }
 }

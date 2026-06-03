@@ -2,12 +2,13 @@ import {APIGatewayProxyEventV2} from 'aws-lambda';
 import twilio from 'twilio';
 import {google} from 'googleapis';
 import jwt from 'jsonwebtoken';
+
+import {FosterLengths} from '@fido-foster-twilio/common';
 import {
-  FosterLengths,
   generateApiGatewayResponse,
   StatusCodes,
   validateEnv,
-} from '@fido-foster-twilio/common';
+} from '@fido-foster-twilio/server-side-common';
 
 const requiredEnvVars = [
   'ALLOWED_ORIGIN',

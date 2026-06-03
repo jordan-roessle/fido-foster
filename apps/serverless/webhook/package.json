@@ -17,7 +17,7 @@
             "cjs"
           ],
           "bundle": false,
-          "main": "apps/serverless/webhook/src/main.ts",
+          "main": "apps/serverless/webhook/src/index.ts",
           "tsConfig": "apps/serverless/webhook/tsconfig.app.json",
           "assets": [
             "apps/serverless/webhook/src/assets"

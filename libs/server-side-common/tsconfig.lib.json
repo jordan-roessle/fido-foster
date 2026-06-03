@@ -9,7 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "types": ["node"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "../common/src/utils/calculate-file-size-mb.ts"],
   "references": [],
   "exclude": [
     "jest.config.ts",

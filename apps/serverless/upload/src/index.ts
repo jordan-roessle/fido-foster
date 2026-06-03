@@ -7,7 +7,7 @@ import {
   generateApiGatewayResponse,
   StatusCodes,
   validateEnv,
-} from '@fido-foster-twilio/common';
+} from '@fido-foster-twilio/server-side-common';
 
 const s3 = new S3Client({region: 'us-east-1'});
 

@@ -17,7 +17,7 @@
             "cjs"
           ],
           "bundle": false,
-          "main": "apps/serverless/upload/src/main.ts",
+          "main": "apps/serverless/upload/src/index.ts",
           "tsConfig": "apps/serverless/upload/tsconfig.app.json",
           "assets": [
             "apps/serverless/upload/src/assets"

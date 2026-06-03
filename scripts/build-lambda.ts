@@ -31,7 +31,7 @@ const main = async () => {
       target: 'node22',
       outfile: `${outdir}/index.js`,
       external: [],
-      minify: true,
+      minify: false,
       sourcemap: false,
     });
 

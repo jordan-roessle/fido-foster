@@ -12,7 +12,6 @@ variable "domain_name" {
 variable "app_name" {
   description = "Application name used for resource naming"
   type        = string
-  default     = "fido-foster-twilio"
 }
 
 variable "environment" {

@@ -3,12 +3,12 @@ import twilio from 'twilio';
 import {google} from 'googleapis';
 import jwt from 'jsonwebtoken';
 
-import {FosterLengths} from '@fido-foster-twilio/common';
+import {FosterLengths} from '@fido-foster/common';
 import {
   generateApiGatewayResponse,
   StatusCodes,
   validateEnv,
-} from '@fido-foster-twilio/server-side-common';
+} from '@fido-foster/server-side-common';
 
 const requiredEnvVars = [
   'ALLOWED_ORIGIN',

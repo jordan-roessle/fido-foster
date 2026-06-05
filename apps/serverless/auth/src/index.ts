@@ -5,7 +5,7 @@ import {
   generateApiGatewayResponse,
   StatusCodes,
   validateEnv,
-} from '@fido-foster-twilio/server-side-common';
+} from '@fido-foster/server-side-common';
 
 const requiredEnvVars = ['ALLOWED_ORIGIN', 'AUTH_PASSWORD', 'JWT_SECRET'];
 const tokenExpiration = '1h';

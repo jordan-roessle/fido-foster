@@ -17,7 +17,7 @@ export default defineConfig(() => ({
   plugins: [react()],
   resolve: {
     alias: {
-      '@fido-foster-twilio/common': resolve(
+      '@fido-foster/common': resolve(
         __dirname,
         '../../libs/common/src/index.ts',
       ),

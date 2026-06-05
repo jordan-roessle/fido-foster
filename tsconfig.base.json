@@ -19,8 +19,8 @@
     "target": "es2022",
     "customConditions": ["@org/source"],
     "paths": {
-      "@fido-foster-twilio/common": ["libs/common/src/index.ts"],
-      "@fido-foster-twilio/server-side-common": [
+      "@fido-foster/common": ["libs/common/src/index.ts"],
+      "@fido-foster/server-side-common": [
         "libs/server-side-common/src/index.ts"
       ]
     }

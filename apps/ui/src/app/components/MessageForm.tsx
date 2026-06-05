@@ -16,7 +16,7 @@ import {
   calculateFileSizeMb,
   FosterLengths,
   MAX_FILE_SIZE_MB,
-} from '@fido-foster-twilio/common';
+} from '@fido-foster/common';
 
 import {getUploadUrl, sendMessage, uploadImage} from '../../api';
 

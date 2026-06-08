@@ -7,11 +7,11 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,mjs,json,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,json,md}\"",
     "build:lambda": "tsx scripts/build-lambda.ts",
-    "deploy:lambda:auth": "tsx scripts/build-lambda.ts --lambda auth && aws lambda update-function-code --function-name fido-foster-twilio-auth --zip-file fileb://apps/serverless/auth/dist/main.zip --region us-east-1",
-    "deploy:lambda:send": "tsx scripts/build-lambda.ts --lambda send && aws lambda update-function-code --function-name fido-foster-twilio-send --zip-file fileb://apps/serverless/send/dist/main.zip --region us-east-1",
-    "deploy:lambda:upload": "tsx scripts/build-lambda.ts --lambda upload && aws lambda update-function-code --function-name fido-foster-twilio-upload --zip-file fileb://apps/serverless/upload/dist/main.zip --region us-east-1",
-    "deploy:lambda:webhook": "tsx scripts/build-lambda.ts --lambda webhook && aws lambda update-function-code --function-name fido-foster-twilio-webhook --zip-file fileb://apps/serverless/webhook/dist/main.zip --region us-east-1",
-    "deploy:ui": "nx build ui && aws s3 sync apps/ui/dist s3://fido-foster-twilio-frontend-prod --delete --region us-east-1 && aws cloudfront create-invalidation --distribution-id ED9301C643QPL --paths /* --region us-east-1"
+    "deploy:lambda:auth": "tsx scripts/build-lambda.ts --lambda auth && aws lambda update-function-code --function-name fido-foster-auth --zip-file fileb://apps/serverless/auth/dist/main.zip --region us-east-1",
+    "deploy:lambda:send": "tsx scripts/build-lambda.ts --lambda send && aws lambda update-function-code --function-name fido-foster-send --zip-file fileb://apps/serverless/send/dist/main.zip --region us-east-1",
+    "deploy:lambda:upload": "tsx scripts/build-lambda.ts --lambda upload && aws lambda update-function-code --function-name fido-foster-upload --zip-file fileb://apps/serverless/upload/dist/main.zip --region us-east-1",
+    "deploy:lambda:webhook": "tsx scripts/build-lambda.ts --lambda webhook && aws lambda update-function-code --function-name fido-foster-webhook --zip-file fileb://apps/serverless/webhook/dist/main.zip --region us-east-1",
+    "deploy:ui": "nx build ui && aws s3 sync apps/ui/dist s3://fido-foster-frontend-prod --delete --region us-east-1 && aws cloudfront create-invalidation --distribution-id E2QI0N2CF9IVNK --paths /* --region us-east-1"
   },
   "private": true,
   "devDependencies": {

@@ -32,6 +32,7 @@ module "send_lambda" {
   app_name      = var.app_name
   function_name = "send"
   artifact_path = "../../apps/serverless/send/dist/main.zip"
+  memory_size   = 512
 
   environment_variables = {
     ALLOWED_ORIGIN               = "https://${var.domain_name}"
@@ -70,6 +71,7 @@ module "webhook_lambda" {
   app_name      = var.app_name
   function_name = "webhook"
   artifact_path = "../../apps/serverless/webhook/dist/main.zip"
+  memory_size   = 512
 
   environment_variables = {
     ALLOWED_ORIGIN               = "https://${var.domain_name}"
